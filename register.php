@@ -5,73 +5,74 @@
 <title> Register New Account </title>
 
 </head>
+<style>
+body {
+    background-color: #d0e4fe;
+}
+
+.registerT {
+
+background-color: #0066CC;
+padding: 30px;
+max-width: 400px;
+margin: 30px auto;
+color: #FFFFFF;
+box-shadow: 0 4px 10px 4px; 
+}
+
+h1 {
+    color: purple;
+}
+
+h3 {
+    color: red;
+}
+</style>
 
 <body>
 
-<?php 
+<br>
 
-$servername = "localhost";
-$username = "root";
-$password = "12101992De@";
-$dbname = "IT202";
 
-//create connection 
+<br>
+<div class="registerT">
 
-$conn = new mysqli ($servername, $username, $password, $dbname);
+<form action = "connect.php" onsubmit="return myFunction()" method="post">
 
-//check connection
+<table><tr><th><font color="white">First Name:</font></th><td> <input type="text" name="fname" required></td></tr>
 
-if ($conn->connect_error){
-	die("Connection failed:" . $conn->connect_error);
-}
+<tr><th><font color="white">Last Name:</font> </th><td><input type="text" name="lname" required></td></tr>
 
-$fname = $_POST["fname"];
-$lname = $_POST["lname"];
-$user = $_POST["username"];
-$pass = $_POST["passwd"];
-$salt = hash("sha256" , $pass);
 
-if ($fname=="" || $lname=="" || $user=="" || $pass=="")
-{
+<tr><th><font color="white">Username:</font></th><td> <input type="text" name="username" required></td></tr>
 
-echo "Required Field";
 
-} else { $sql = "insert into users values('$fname', '$lname', '$user', '$salt')";
+<tr><th><font color="white">Password:</font></th><td><input type="password" name="passwd" required></td></tr>
+
+<tr><th><font color="white">Email:</font></th><td> <input type="text" name="email" required></td></tr>
+
+
+<tr><th><font color="white">Birthdate:</font></th><td> <input type="text" name="bday"required>
+<font color="white">Format: yyyy-mm-dd</font></td></tr>
+
+
+<tr><th><font color="white">Class Standing:</font></th><td> <input type= "text" name= "class" required></td></tr>
 	
-		$conn->query($sql); 
-			
-		echo "New Account Registered Successfully";
 
+<tr><th><font color="white">Graduation Year:</font></th><td> <input type="text" name="year" required></td></tr>
+
+</table>
+
+<p align="center" ><input type="submit" value="Register"> </p>
+
+</div>
+<script>
+//added javascript part
+function myFunction() {
+    alert("Confirming to Proceed");
 }
+</script>
 
-
-?>
-
-
-<br>
-
-
-<br>
-
-<form action = "register.php" method="post">
-
-First Name: <input type="text" name="fname">
-
-<br>
-
-Last Name: <input type="text" name="lname">
-
-<br>
-
-Username: <input type="text" name="username">
-
-<br>
-
-Password: <input type="password" name="passwd">
-
-<br>
-
-<input type="submit" value="Register">
 
 </form>
 </body>
